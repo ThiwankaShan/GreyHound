@@ -7,7 +7,10 @@ namespace GreyHound
     interface IWeapon
     {
         public string getWeapon();
-        public int fireWeapon();
+
+        public int getDamage();
+
+        public int getRange();
     }
 
     class RailGun : IWeapon
@@ -17,9 +20,14 @@ namespace GreyHound
             return "get rail gun";
         }
 
-        public int fireWeapon()
+        public int getDamage()
         {
-            return 10;
+            return 100;
+        }
+
+        public int getRange()
+        {
+           return 5;
         }
     }
 
@@ -30,9 +38,14 @@ namespace GreyHound
             return "get motar gun";
         }
 
-        public int fireWeapon()
+        public int getDamage()
         {
-            return 100;
+            return 10;
+        }
+
+        public int getRange()
+        {
+            return 10;
         }
     }
 }

@@ -9,9 +9,9 @@ namespace GreyHound
         
         private static Player _instance = null;
 
-        private int _health = 200;
-
-        private Player() { }
+        private Player() {
+            AttackSubject.getInstance().register(this);
+        }
 
         public static Player getInstance()
         {
@@ -23,24 +23,12 @@ namespace GreyHound
             return _instance;
         }
 
-        public string getHealth()
+       
+        public override void attack(int x, int y)
         {
-            return _health.ToString();
-        }
-
-        public void getHit(int points)
-        {
-            _health -= points;  
-        }
-
-        public void heal(int points)
-        {
-            _health += points;
-        }
-
-        public override void attack()
-        {
-            getHit(this.getWeapon().fireWeapon());
+            int damage = this.getWeapon().getDamage();
+            int range = this.getWeapon().getRange();
+            AttackSubject.getInstance().Attack(damage,x,y,range);
         }
     }
 }

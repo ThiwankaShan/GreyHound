@@ -6,9 +6,18 @@ namespace GreyHound
 {
     class EnemyShip : Ship
     {
-        public override void attack()
+        public EnemyShip()
         {
-            Player.getInstance().getHit(this.getWeapon().fireWeapon());
+            AttackSubject.getInstance().register(this);
+        }
+
+        public override void attack(int x = 0 , int y = 0)
+        {
+            x = Player.getInstance().getLocationX();
+            y = Player.getInstance().getLocationY();
+            int damage = this.getWeapon().getDamage();
+            int range = this.getWeapon().getRange();
+            AttackSubject.getInstance().Attack(damage,x,y,range);
         }
     }
 }
