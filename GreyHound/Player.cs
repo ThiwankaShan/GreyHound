@@ -11,6 +11,8 @@ namespace GreyHound
 
         private Player() {
             AttackSubject.getInstance().register(this);
+            this.setWeapon(new MotarGun());
+            this.setEngine(new LightEngine());
         }
 
         public static Player getInstance()
@@ -29,6 +31,15 @@ namespace GreyHound
             int damage = this.getWeapon().getDamage();
             int range = this.getWeapon().getRange();
             AttackSubject.getInstance().Attack(damage,x,y,range);
+            MoveSubject.getInstance().Move();
+        }
+
+        public override void move(int directionX , int directionY)
+        {
+            int locationX = this.getLocationX() + this.getEngine().getspeed() * directionX;
+            int locationY = this.getLocationY() + this.getEngine().getspeed() * directionY;
+
+            this.setLocation(locationX,locationY);
         }
     }
 }

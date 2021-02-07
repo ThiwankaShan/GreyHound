@@ -10,7 +10,7 @@ namespace GreyHound
 
         private IEngine _engine;
 
-        private int _health = 200;
+        private int _health = 1000;
 
         private int _locationX = 0;
         private int _locationY = 0;
@@ -30,6 +30,11 @@ namespace GreyHound
             return _weapon;
         }
 
+        public IEngine getEngine()
+        {
+            return _engine;
+        }
+
         public IEngine Engine()
         {
             return _engine;
@@ -40,9 +45,9 @@ namespace GreyHound
             _health -= points;
         }
 
-        public string getHealth()
+        public int getHealth()
         {
-            return _health.ToString();
+            return _health;
         }
 
         public void heal(int points)
@@ -73,6 +78,8 @@ namespace GreyHound
         }
 
         abstract public void attack(int x = 0 , int y = 0 );
-        
+
+        abstract public void move(int x = 0, int y = 0); 
+
     }
 }

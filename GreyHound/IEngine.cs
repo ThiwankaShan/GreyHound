@@ -7,7 +7,8 @@ namespace GreyHound
     interface IEngine
     {
         public string getEngine();
-        public string startEngine();
+
+        public int getspeed();
     }
 
     class SpeedEngine : IEngine
@@ -17,9 +18,9 @@ namespace GreyHound
             return "get speed engine";
         }
 
-        public string startEngine()
+        public int getspeed()
         {
-            return "speed 100";
+            return 20;
         }
     }
 
@@ -30,9 +31,9 @@ namespace GreyHound
             return "get light engine ";
         }
 
-        public string startEngine()
+        public int getspeed()
         {
-            return "speed 50";
+            return 5;
         }
     }
 }

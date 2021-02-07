@@ -6,6 +6,7 @@ namespace GreyHound
 {
     class AttackSubject
     {
+     
         private List<Ship> _observers = new List<Ship>();
 
         private static AttackSubject _instance = null;
@@ -37,8 +38,7 @@ namespace GreyHound
                 int locationY = ship.getLocationY();
                 int Xdiff = Math.Abs(locationX - attackX);
                 int Ydiff = Math.Abs(locationY - attackY);
-                Console.WriteLine($"difference {Xdiff.ToString()}, {Ydiff.ToString()}");
-                if(Xdiff < range || Ydiff < range){
+                if(Xdiff < range & Ydiff < range){
                     ship.getHit(points);
                 }
                 
