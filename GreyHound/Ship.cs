@@ -74,7 +74,7 @@ namespace GreyHound
 
         public string showLocation()
         {
-            return $"({_locationX.ToString()},{_locationY.ToString()})";
+            return $"({_locationX.ToString("000")},{_locationY.ToString("000")})";
         }
 
         abstract public void attack(int x = 0 , int y = 0 );
