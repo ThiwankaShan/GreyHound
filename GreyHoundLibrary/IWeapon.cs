@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace GreyHound
+namespace GreyHoundLibrary
 {
-    interface IWeapon
+    public interface IWeapon
     {
         public string getWeapon();
 
@@ -13,7 +13,7 @@ namespace GreyHound
         public int getRange();
     }
 
-    class RailGun : IWeapon
+    public class RailGun : IWeapon
     {
         public string getWeapon()
         {
@@ -27,11 +27,11 @@ namespace GreyHound
 
         public int getRange()
         {
-           return 20;
+           return 2;
         }
     }
 
-    class MotarGun : IWeapon
+    public class MotarGun : IWeapon
     {
         public string getWeapon()
         {
@@ -45,7 +45,7 @@ namespace GreyHound
 
         public int getRange()
         {
-            return 50;
+            return 2;
         }
     }
 }

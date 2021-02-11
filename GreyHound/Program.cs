@@ -16,16 +16,17 @@ namespace GreyHound
             Ship ship3 = builder.buildShip(factory);
 
             player.setLocation(10, 20);
-            ship1.setLocation(100, 300);
-            ship2.setLocation(140, 235);
-            ship3.setLocation(-200, -10);
+            ship1.setLocation(60, 140);
+            ship2.setLocation(140, 80);
+            ship3.setLocation(-130,50);
 
-            Thread Tstatus = new Thread(status);
-            Tstatus.Start();
-
+          
             while (true)
             {
-                Thread.Sleep(1000);
+                status();
+
+                Thread.Sleep(2000);
+
                 if (player.getHealth() < 0)
                 {
                     break;
@@ -33,23 +34,30 @@ namespace GreyHound
 
                 Thread TgamePlay = new Thread(gamePlay);
                 TgamePlay.Start();
-                Thread.Sleep(28500);
+
+                Thread.Sleep(28000);
 
                 try
                 {
-                    TgamePlay.Abort();
+                    TgamePlay.Suspend();
                 }
                 catch
                 {
-                    Console.WriteLine("Time finished");
+                    Console.WriteLine("Times up");
                 }
                 
+                enemyAttack();
+                Thread.Sleep(2000);
+                
             }
+
+
 
             Console.WriteLine("Game over");
 
             void gamePlay()
-            {                                           
+            {
+                
                     Console.WriteLine($"Attack damage radius {player.getWeapon().getRange()}\n");
                     Console.WriteLine("Enter x coordinates for the attack ");
                     int locationX = Convert.ToInt32(Console.ReadLine());
@@ -65,8 +73,9 @@ namespace GreyHound
                     Console.WriteLine("Enter y axis direction to move (1 to up, -1 to down): ");
                     int directionY = Convert.ToInt32(Console.ReadLine());
                     player.move(directionX, directionY);
-
                 
+                
+                                  
             
             }
             
@@ -75,13 +84,7 @@ namespace GreyHound
             
             void status()
             {
-                while (true)
-                {
-                    if (player.getHealth() < 0)
-                    {
-                        break;
-                    }
-
+                
                     Console.WriteLine("==================================================================");
                     Console.WriteLine("SHIP\t\t HEALTH\t\t LOCATION\t\t SPEED");
                     Console.WriteLine("==================================================================\n");
@@ -94,17 +97,19 @@ namespace GreyHound
 
                     Console.WriteLine("==================================================================\n");
 
-                    Thread.Sleep(30000);
+                    
+                
+            }
 
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("\nEnemies are attacking\n");
-                    Console.ResetColor();
+            void enemyAttack()
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("\nEnemies are attacking\n");
+                Console.ResetColor();
 
-                    ship1.attack();
-                    ship2.attack();
-                    ship3.attack();
-                }
-
+                ship1.attack();
+                ship2.attack();
+                ship3.attack();
             }
         }
     }
