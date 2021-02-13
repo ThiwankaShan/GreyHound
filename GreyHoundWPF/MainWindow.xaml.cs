@@ -33,12 +33,39 @@ namespace GreyHoundWPF
             }
             
         }
-
+        
         private void OnWindowclose(object sender, EventArgs e)
         {
             data.t.Join();
             Environment.Exit(Environment.ExitCode); 
         }
 
+        private void fire_Click(object sender, RoutedEventArgs e)
+        {
+            int xcoordinate = Convert.ToInt32(xCoordinate.Text);
+            int ycoordinate = Convert.ToInt32(yCoordinate.Text);
+
+            data.playerAttack(xcoordinate,ycoordinate);
+        }
+
+        private void up_Click(object sender, RoutedEventArgs e)
+        {
+            data.playerMove(-1, 0);
+        }
+
+        private void left_Click(object sender, RoutedEventArgs e)
+        {
+            data.playerMove(0, -1);
+        }
+
+        private void down_Click(object sender, RoutedEventArgs e)
+        {
+            data.playerMove(1, 0);
+        }
+
+        private void right_Click(object sender, RoutedEventArgs e)
+        {
+            data.playerMove(0, 1);
+        }
     }
 }

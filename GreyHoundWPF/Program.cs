@@ -100,6 +100,18 @@ namespace GreyHoundWPF
             ship3.attack();
         }
 
+        public void playerAttack(int x, int y)
+        {
+            player.attack(x,y);
+            onPropertyChanged(string.Empty);
+        }
+
+        public void playerMove(int xDirection, int yDirection)
+        {
+            player.move(xDirection,yDirection);
+            onPropertyChanged(string.Empty);
+        }
+
         private void update()
         {
             ship1LocationX = ship1.getLocationX();
