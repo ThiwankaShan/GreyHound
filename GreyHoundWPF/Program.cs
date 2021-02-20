@@ -26,6 +26,8 @@ namespace GreyHoundWPF
         public int ship3Health { get; set; }
         public Thread t { set; get; }
 
+        public bool isPlaying { get; set; }
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         protected virtual void onPropertyChanged(string propName)
@@ -50,17 +52,16 @@ namespace GreyHoundWPF
             ship2.setLocation(0, 2);
             ship3.setLocation(2, 1);
             update();
+            isPlaying = true;
             t = new Thread(Game);
             t.Start();
         }
 
         public void Game()
-        {
-            int i = 0;
-           
-            while (i<10)
+        {  
+            while (isPlaying)
             { 
-                Thread.Sleep(3000);
+                Thread.Sleep(1000);
                 gamePlay();
             }            
         }
@@ -103,13 +104,13 @@ namespace GreyHoundWPF
         public void playerAttack(int x, int y)
         {
             player.attack(x,y);
-            onPropertyChanged(string.Empty);
+            update();
         }
 
         public void playerMove(int xDirection, int yDirection)
-        {
+        { 
             player.move(xDirection,yDirection);
-            onPropertyChanged(string.Empty);
+            update();
         }
 
         private void update()
@@ -127,6 +128,7 @@ namespace GreyHoundWPF
             ship2Health = ship2.getHealth();
             ship3Health = ship3.getHealth();
             onPropertyChanged(string.Empty);
+
         }
     }
 }

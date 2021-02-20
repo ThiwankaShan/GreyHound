@@ -4,6 +4,9 @@ using GreyHoundLibrary;
 using System.Threading;
 using System;
 using System.Windows.Controls;
+using System.Windows.Input;
+using System.Diagnostics;
+using System.ComponentModel;
 
 namespace GreyHoundWPF
 {
@@ -25,19 +28,34 @@ namespace GreyHoundWPF
             {
                 RadarGrid.RowDefinitions.Add(new RowDefinition());
                 RadarGrid.ColumnDefinitions.Add(new ColumnDefinition());
-                TextBlock text = new TextBlock();
-                text.Text = i.ToString();
-                text.SetValue(Grid.RowProperty,i);
-                text.SetValue(Grid.ColumnProperty,i);
-                
+                Button button = new Button();
+                button.SetValue(Grid.RowProperty,i);
+                button.SetValue(Grid.ColumnProperty,i);
+
             }
             
         }
-        
-        private void OnWindowclose(object sender, EventArgs e)
+
+        protected override void OnClosing(CancelEventArgs e)
         {
-            data.t.Join();
-            Environment.Exit(Environment.ExitCode); 
+            data.isPlaying = false;
+            try
+            {
+                data.t.Abort();
+            }
+            catch
+            {
+                Debug.WriteLine("Thread closed");
+            }
+            
+            base.OnClosing(e);
+
+            Application.Current.Shutdown();
+        }
+
+        private void location_Click(object sender, RoutedEventArgs e)
+        {
+            Debug.WriteLine("location Clicked");
         }
 
         private void fire_Click(object sender, RoutedEventArgs e)
@@ -50,22 +68,48 @@ namespace GreyHoundWPF
 
         private void up_Click(object sender, RoutedEventArgs e)
         {
+            
             data.playerMove(-1, 0);
         }
 
         private void left_Click(object sender, RoutedEventArgs e)
         {
+           
             data.playerMove(0, -1);
         }
 
         private void down_Click(object sender, RoutedEventArgs e)
         {
+            
             data.playerMove(1, 0);
         }
 
         private void right_Click(object sender, RoutedEventArgs e)
         {
+           
             data.playerMove(0, 1);
+        }
+
+        private void OnKeyDownHandler(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Up)
+            {
+                data.playerMove(-1, 0);
+
+            }
+            else if((e.Key == Key.Left))
+            {
+                data.playerMove(0, -1);
+            }
+            else if ((e.Key == Key.Down))
+            {
+                data.playerMove(1, 0);
+            }
+            else if ((e.Key == Key.Right))
+            {
+                data.playerMove(0, 1);
+            }
+           
         }
     }
 }
