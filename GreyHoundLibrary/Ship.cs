@@ -10,10 +10,9 @@ namespace GreyHoundLibrary
 
         private IEngine _engine;
 
-        private int _health = 1000;
-
-        private int _locationX = 0;
-        private int _locationY = 0;
+        public int health { get; set; } = 1000;
+        public int locationX { get; set; }
+        public int locationY { get; set; }
 
         public void setWeapon(IWeapon weapon)
         {
@@ -42,39 +41,38 @@ namespace GreyHoundLibrary
 
         public void getHit(int points)
         {
-            _health -= points;
+            health -= points;
         }
 
         public int getHealth()
         {
-            return _health;
+            return health;
         }
 
         public void heal(int points)
         {
-            _health += points;
+            health += points;
         }
-
 
         public void setLocation(int x = 0 , int y = 0 )
         {
-            _locationX = x;
-            _locationY = y;
+            locationX = x;
+            locationY = y;
         }
 
         public int getLocationX()
         {
-            return _locationX;
+            return locationX;
         }
 
         public int getLocationY()
         {
-            return _locationY;
+            return locationY;
         }
 
         public string showLocation()
         {
-            return $"({_locationX.ToString("000")},{_locationY.ToString("000")})";
+            return $"({locationX.ToString("000")},{locationY.ToString("000")})";
         }
 
         abstract public void attack(int x = 0 , int y = 0 );

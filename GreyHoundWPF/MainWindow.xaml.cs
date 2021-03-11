@@ -15,15 +15,15 @@ namespace GreyHoundWPF
     /// </summary>
     public partial class MainWindow : Window
     {
-        public Program data;
+        public Program data { set; get; }
         public MainWindow()
         {
             
             InitializeComponent();
 
-            data = new Program();      
+            data = new Program();
             DataContext = data;
-            
+
             for(int i= 0; i<21; i++)
             {
                 RadarGrid.RowDefinitions.Add(new RowDefinition());
@@ -53,41 +53,12 @@ namespace GreyHoundWPF
             Application.Current.Shutdown();
         }
 
-        private void location_Click(object sender, RoutedEventArgs e)
-        {
-            Debug.WriteLine("location Clicked");
-        }
-
         private void fire_Click(object sender, RoutedEventArgs e)
         {
             int xcoordinate = Convert.ToInt32(xCoordinate.Text);
             int ycoordinate = Convert.ToInt32(yCoordinate.Text);
 
             data.playerAttack(xcoordinate,ycoordinate);
-        }
-
-        private void up_Click(object sender, RoutedEventArgs e)
-        {
-            
-            data.playerMove(-1, 0);
-        }
-
-        private void left_Click(object sender, RoutedEventArgs e)
-        {
-           
-            data.playerMove(0, -1);
-        }
-
-        private void down_Click(object sender, RoutedEventArgs e)
-        {
-            
-            data.playerMove(1, 0);
-        }
-
-        private void right_Click(object sender, RoutedEventArgs e)
-        {
-           
-            data.playerMove(0, 1);
         }
 
         private void OnKeyDownHandler(object sender, KeyEventArgs e)

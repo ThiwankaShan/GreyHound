@@ -3,10 +3,6 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:StartupUri="MainWindow.xaml"
-        xmlns:ShutdownMode="OnExplicitShutdown"
-        xmlns:local="clr-namespace:GreyHoundWPF"
-        xmlns:coll="clr-namespace:System.Collections.Generic;assembly=System" d:DataContext="{d:DesignInstance Type=local:Program}"
         mc:Ignorable="d"
         Title="GreyHound"
         KeyDown="OnKeyDownHandler">
@@ -33,22 +29,22 @@
             <Grid.RowDefinitions>
             </Grid.RowDefinitions>
 
-            <Ellipse Grid.Column="{Binding ship1LocationY}" Grid.Row="{Binding ship1LocationX}"
+            <Ellipse x:Name="ship1" Grid.Column="{Binding ship1.locationY}" Grid.Row="{Binding ship1.locationX}"
                 Fill="OrangeRed"
                 Height="20"
                 Width="20"
                 />
-            <Ellipse Grid.Column="{Binding ship2LocationY}" Grid.Row="{Binding ship2LocationX}"
+            <Ellipse x:Name="ship2" Grid.Column="{Binding ship2.locationY}" Grid.Row="{Binding ship2.locationX}"
                 Fill="OrangeRed"
                 Height="20"
                 Width="20"
                 />
-            <Ellipse Grid.Column="{Binding ship3LocationY}" Grid.Row="{Binding ship3LocationX}"
+            <Ellipse x:Name="ship3" Grid.Column="{Binding ship3.locationY}" Grid.Row="{Binding ship3.locationX}"
                 Fill="OrangeRed"
                 Height="20"
                 Width="20"
                 />
-            <Ellipse Grid.Column="{Binding playerLocationY}" Grid.Row="{Binding playerLocationX}"
+            <Ellipse x:Name="player" Grid.Column="{Binding player.locationY}" Grid.Row="{Binding player.locationX}"
                 Fill="DeepSkyBlue"
                 Height="20"
                 Width="20"
@@ -65,80 +61,71 @@
             <TextBlock Text="Player" Grid.Row="0" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center"/>
             <StackPanel Orientation="Horizontal" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center">
                 <TextBlock Text="Health :  " FontSize="16"/>
-                <TextBlock Text="{Binding playerHealth}"  FontSize="16"/>
+                <TextBlock Text="{Binding player.health}"  FontSize="16"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center">
                 <TextBlock Text="Location :  " FontSize="16"/>
                 <TextBlock Text="( " FontSize="16"/>
-                <TextBlock Text="{Binding playerLocationX}" FontSize="16"/>
+                <TextBlock Text="{Binding player.locationX}" FontSize="16"/>
                 <TextBlock Text=" , " FontSize="16"/>
-                <TextBlock Text="{Binding playerLocationY}" FontSize="16"/>
+                <TextBlock Text="{Binding player.locationY}" FontSize="16"/>
                 <TextBlock Text=")" FontSize="16"/>
             </StackPanel>
 
         </Grid>
 
-        <Grid x:Name="EnemystatusBar" Grid.Row="0" Grid.Column="2" Margin="0,10,0,0">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="auto"/>
-                <RowDefinition/>
-            </Grid.RowDefinitions>
+
+        <StackPanel Grid.Column="2" >
+            <StackPanel x:Name="ship1Stat">
             <TextBlock Text="Ship 1" Grid.Row="0" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-            <StackPanel Orientation="Horizontal" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <StackPanel x:Name="ship1info" Orientation="Horizontal" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center">
                 <TextBlock Text="Health :  " FontSize="16"/>
-                <TextBlock Text="{Binding ship1Health}"  FontSize="16"/>
+                <TextBlock Text="{Binding ship1.health}"  FontSize="16"/>
             </StackPanel>
 
             <StackPanel Orientation="Horizontal" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center">
                 <TextBlock Text="Location :  " FontSize="16"/>
                 <TextBlock Text="( " FontSize="16"/>
-                <TextBlock Text="{Binding ship1LocationX}" FontSize="16"/>
+                    <TextBlock Text="{Binding ship1.locationX}" FontSize="16"/>
                 <TextBlock Text=" , " FontSize="16"/>
-                <TextBlock Text="{Binding ship1LocationY}" FontSize="16"/>
+                    <TextBlock Text="{Binding ship1.locationY}" FontSize="16"/>
                 <TextBlock Text=")" FontSize="16"/>
             </StackPanel>
-
-            <TextBlock Text="Ship 2" Grid.Row="4" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-            <StackPanel Orientation="Horizontal" Grid.Row="5" VerticalAlignment="Center" HorizontalAlignment="Center">
+                </StackPanel>
+            <StackPanel x:Name="ship2Stat">
+                <TextBlock Text="Ship 2" Grid.Row="4" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            <StackPanel x:Name="ship2info" Orientation="Horizontal" Grid.Row="5" VerticalAlignment="Center" HorizontalAlignment="Center">
                 <TextBlock Text="Health :  " FontSize="16"/>
-                <TextBlock Text="{Binding ship2Health}" Grid.Row="3" FontSize="16"/>
+                    <TextBlock Text="{Binding ship2.health}" Grid.Row="3" FontSize="16"/>
             </StackPanel>
 
             <StackPanel Orientation="Horizontal" Grid.Row="6" VerticalAlignment="Center" HorizontalAlignment="Center">
                 <TextBlock Text="Location :  " FontSize="16"/>
                 <TextBlock Text="( " FontSize="16"/>
-                <TextBlock Text="{Binding ship2LocationX}" FontSize="16"/>
+                    <TextBlock Text="{Binding ship2.locationX}" FontSize="16"/>
                 <TextBlock Text=" , " FontSize="16"/>
-                <TextBlock Text="{Binding ship2LocationY}" FontSize="16"/>
+                    <TextBlock Text="{Binding ship2.locationY}" FontSize="16"/>
                 <TextBlock Text=")" FontSize="16"/>
             </StackPanel>
-
-            <TextBlock Text="Ship 3" Grid.Row="8" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-            <StackPanel Orientation="Horizontal" Grid.Row="9" VerticalAlignment="Center" HorizontalAlignment="Center">
-                <TextBlock Text="Health :  " FontSize="16"/>
-                <TextBlock Text="{Binding ship3Health}" Grid.Row="3" FontSize="16"/>
             </StackPanel>
-            <StackPanel Orientation="Horizontal" Grid.Row="10" VerticalAlignment="Center" HorizontalAlignment="Center">
-                <TextBlock Text="Location :  " FontSize="16"/>
-                <TextBlock Text="( " FontSize="16"/>
-                <TextBlock Text="{Binding ship3LocationX}" FontSize="16"/>
-                <TextBlock Text=" , " FontSize="16"/>
-                <TextBlock Text="{Binding ship3LocationY}" FontSize="16"/>
-                <TextBlock Text=")" FontSize="16"/>
+            <StackPanel x:Name="ship3Stat">
+                <TextBlock Text="Ship 3" Grid.Row="8" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <StackPanel x:Name="ship3info" Orientation="Horizontal" Grid.Row="9" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="Health :  " FontSize="16"/>
+                    <TextBlock Text="{Binding ship3.health}" Grid.Row="3" FontSize="16"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Grid.Row="10" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="Location :  " FontSize="16"/>
+                    <TextBlock Text="( " FontSize="16"/>
+                    <TextBlock Text="{Binding ship3.locationX}" FontSize="16"/>
+                    <TextBlock Text=" , " FontSize="16"/>
+                    <TextBlock Text="{Binding ship3.locationY}" FontSize="16"/>
+                    <TextBlock Text=")" FontSize="16"/>
+                </StackPanel>
             </StackPanel>
-        </Grid>
+            </StackPanel>
 
-        <Grid x:Name="ControlsBar" Grid.Row="1" Grid.Column="1">
+                <Grid x:Name="ControlsBar" Grid.Row="1" Grid.Column="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="auto"/>
@@ -171,30 +158,6 @@
                 </Button>
             </Grid>
         </Grid>
-        <Grid x:Name="movement" Grid.Row="1" Grid.Column="2">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="auto"/>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
-            <Button Name="up" Grid.Row="0" FontFamily="Segoe MDL2 Assets" Content="&#xE110;" Grid.Column="1" FontSize="16" Height="auto" Background="DarkSlateBlue" VerticalAlignment="Center" Margin="5,0,5,0" Click="up_Click">
-
-            </Button>
-            <Button Name="left" Grid.Row="1" FontFamily="Segoe MDL2 Assets" Content="&#xE72B;" Grid.Column="0" FontSize="16" Height="auto" Background="DarkSlateBlue" VerticalAlignment="Center" Margin="10,0,0,0" Click="left_Click">
-
-            </Button>
-            <Button Name="down" Grid.Row="2"  FontFamily="Segoe MDL2 Assets" Content="&#xE1FD;" Grid.Column="1" FontSize="16" Height="auto" Background="DarkSlateBlue" VerticalAlignment="Center" Margin="5,0,5,0" Click="down_Click">
-
-            </Button>
-            <Button Name="right" Grid.Row="1" FontFamily="Segoe MDL2 Assets" Content="&#xE72A;" Grid.Column="2" FontSize="16" Height="auto" Background="DarkSlateBlue" VerticalAlignment="Center" Margin="0,0,10,0" Click="right_Click">
-
-            </Button>
-        </Grid>
-
+        
     </Grid>
 </Window>
