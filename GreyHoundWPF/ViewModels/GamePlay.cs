@@ -7,7 +7,7 @@ using System.Diagnostics;
 
 namespace GreyHoundWPF
 {
-    public class Program : ObservableObject
+    public class GamePlay : ObservableObject
     {
         public Ship ship1 { get; set; }
         public Ship ship2 { get; set; }
@@ -16,7 +16,7 @@ namespace GreyHoundWPF
         public Thread t { set; get; }
         public bool isPlaying { get; set; }
 
-        public Program()
+        public GamePlay()
         {
             ShipBuilder builder = ShipBuilder.getInstance();
             ShipFactory factory = new HCShipFactory();
@@ -42,7 +42,7 @@ namespace GreyHoundWPF
             while (isPlaying)
             {
                 Debug.WriteLine(ship1.health);
-                Thread.Sleep(1000);
+                Thread.Sleep(12000);
                 gamePlay();
             }            
         }
@@ -72,7 +72,8 @@ namespace GreyHoundWPF
         }
 
         public void playerMove(int xDirection, int yDirection)
-        { 
+        {
+            Thread.Sleep(1000);
             player.move(xDirection,yDirection);
             update();
         }

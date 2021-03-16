@@ -7,6 +7,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Diagnostics;
 using System.ComponentModel;
+using System.Windows.Media;
 
 namespace GreyHoundWPF
 {
@@ -15,25 +16,51 @@ namespace GreyHoundWPF
     /// </summary>
     public partial class MainWindow : Window
     {
-        public Program data { set; get; }
+        public GamePlay data { set; get; }
+
         public MainWindow()
-        {
-            
+        { 
             InitializeComponent();
 
-            data = new Program();
+            data = new GamePlay();
             DataContext = data;
 
-            for(int i= 0; i<21; i++)
+            for(int i= 0; i<20; i++)
             {
                 RadarGrid.RowDefinitions.Add(new RowDefinition());
                 RadarGrid.ColumnDefinitions.Add(new ColumnDefinition());
                 Button button = new Button();
                 button.SetValue(Grid.RowProperty,i);
                 button.SetValue(Grid.ColumnProperty,i);
-
             }
+
             
+            for (int j = 0; j<20; j++)
+            {
+                TextBlock txtBox = new TextBlock();
+                txtBox.Text = j.ToString();
+                txtBox.Foreground = Brushes.WhiteSmoke;
+                Grid.SetColumn(txtBox,0);
+                Grid.SetRow(txtBox,j);
+
+                RadarGrid.Children.Add(txtBox);
+              
+            }
+
+            
+            for (int j = 1; j < 20; j++)
+            {
+                TextBlock txtBox = new TextBlock();
+                txtBox.Text = j.ToString();
+                txtBox.Foreground = Brushes.WhiteSmoke;
+                Grid.SetColumn(txtBox, j);
+                Grid.SetRow(txtBox, 20);
+
+                RadarGrid.Children.Add(txtBox);
+            }
+
+
+
         }
 
         protected override void OnClosing(CancelEventArgs e)
@@ -49,16 +76,24 @@ namespace GreyHoundWPF
             }
             
             base.OnClosing(e);
-
             Application.Current.Shutdown();
         }
 
         private void fire_Click(object sender, RoutedEventArgs e)
         {
-            int xcoordinate = Convert.ToInt32(xCoordinate.Text);
-            int ycoordinate = Convert.ToInt32(yCoordinate.Text);
 
-            data.playerAttack(xcoordinate,ycoordinate);
+            bombLocation.Visibility = Visibility.Visible ;
+            if (xCoordinate.Text != "" && yCoordinate.Text != "") {
+                int xcoordinate = Convert.ToInt32(xCoordinate.Text);
+                int ycoordinate = Convert.ToInt32(yCoordinate.Text);
+
+                data.playerAttack(xcoordinate, ycoordinate);
+            }
+            else
+            {
+                data.playerAttack(0, 0);
+            }
+            
         }
 
         private void OnKeyDownHandler(object sender, KeyEventArgs e)
@@ -79,8 +114,7 @@ namespace GreyHoundWPF
             else if ((e.Key == Key.Right))
             {
                 data.playerMove(0, 1);
-            }
-           
+            }    
         }
     }
 }
