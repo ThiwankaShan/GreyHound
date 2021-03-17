@@ -31,7 +31,7 @@ namespace GreyHoundLibrary
             int damage = this.getWeapon().getDamage();
             int range = this.getWeapon().getRange();
             AttackSubject.getInstance().Attack(damage,x,y,range);
-            //MoveSubject.getInstance().Move();
+            
         }
 
         public override void move(int directionX , int directionY)

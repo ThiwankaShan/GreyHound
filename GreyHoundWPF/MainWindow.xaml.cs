@@ -8,6 +8,7 @@ using System.Windows.Input;
 using System.Diagnostics;
 using System.ComponentModel;
 using System.Windows.Media;
+using System.Threading.Tasks;
 
 namespace GreyHoundWPF
 {
@@ -17,6 +18,8 @@ namespace GreyHoundWPF
     public partial class MainWindow : Window
     {
         public GamePlay data { set; get; }
+
+        public bool available = true;
 
         public MainWindow()
         { 
@@ -79,42 +82,69 @@ namespace GreyHoundWPF
             Application.Current.Shutdown();
         }
 
-        private void fire_Click(object sender, RoutedEventArgs e)
+        private async void fire_Click(object sender, RoutedEventArgs e)
         {
-
-            bombLocation.Visibility = Visibility.Visible ;
+ 
             if (xCoordinate.Text != "" && yCoordinate.Text != "") {
+
+                bombLocation.Visibility = Visibility.Visible;
+                
+
                 int xcoordinate = Convert.ToInt32(xCoordinate.Text);
                 int ycoordinate = Convert.ToInt32(yCoordinate.Text);
 
                 data.playerAttack(xcoordinate, ycoordinate);
+                fire.IsEnabled = false;
+                gunLoading.Visibility = Visibility.Visible;
+               
+                await Task.Delay(6000);
+                gunLoading.Visibility = Visibility.Hidden;
+                fire.IsEnabled = true;
+               
             }
-            else
-            {
-                data.playerAttack(0, 0);
-            }
+            
             
         }
 
-        private void OnKeyDownHandler(object sender, KeyEventArgs e)
+        private async void OnKeyDownHandler(object sender, KeyEventArgs e)
         {
-            if (e.Key == Key.Up)
-            {
-                data.playerMove(-1, 0);
 
-            }
-            else if((e.Key == Key.Left))
+            if (e.Key == Key.Up && available)
             {
+                available = false;
+                data.playerMove(-1, 0);
+                await Task.Delay(6000);
+                available = true;
+            }
+            else if(e.Key == Key.Left && available)
+            {
+                available = false;
                 data.playerMove(0, -1);
+                await Task.Delay(6000);
+                available = true;
             }
-            else if ((e.Key == Key.Down))
+            else if (e.Key == Key.Down && available)
             {
+                available = false;
                 data.playerMove(1, 0);
+                await Task.Delay(6000);
+                available = true;
             }
-            else if ((e.Key == Key.Right))
+            else if (e.Key == Key.Right && available)
             {
+                available = false;
                 data.playerMove(0, 1);
+                await Task.Delay(6000);
+                available = true;
             }    
+        }
+
+        private void RadarGrid_MouseLeftButtonDown(object sender, MouseEventArgs e)
+        {
+            Grid grid = sender as Grid;
+            int row = (int)grid.GetValue(Grid.RowProperty);
+            int column = (int)grid.GetValue(Grid.ColumnProperty);
+            Debug.WriteLine($" {row.ToString()}, {column.ToString()}");
         }
     }
 }

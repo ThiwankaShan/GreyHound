@@ -22,7 +22,7 @@
             <ColumnDefinition Width="0.25*"/>
         </Grid.ColumnDefinitions>
 
-        <Grid x:Name="RadarGrid" Grid.Row="0" ShowGridLines="True" Grid.Column="1" Width="auto" Height="auto" Background="#081207" ClipToBounds="False">
+        <Grid x:Name="RadarGrid" Grid.Row="0" ShowGridLines="True" Grid.Column="1" Width="auto" Height="auto" Background="#081207" ClipToBounds="False" MouseLeftButtonDown="RadarGrid_MouseLeftButtonDown" >
 
             <Grid.ColumnDefinitions>
             </Grid.ColumnDefinitions>
@@ -34,6 +34,11 @@
                 Fill="Red"
                 Height="30"
                 Width="30"
+                Stretch="UniformToFill"
+                     Grid.ColumnSpan="2"
+                     Grid.RowSpan="2"
+                     HorizontalAlignment="Left"
+                     VerticalAlignment="Top"
                 />
 
             <Ellipse x:Name="ship1" Grid.Column="{Binding ship1.locationY}" Grid.Row="{Binding ship1.locationX}"
@@ -145,6 +150,7 @@
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
             <Grid Grid.Row="0">
                 <Grid.ColumnDefinitions>
@@ -175,14 +181,18 @@
                             <BeginStoryboard>
                                 <Storyboard>
                                     <DoubleAnimation Storyboard.TargetName="bombLocation"
-                                     Storyboard.TargetProperty="(Ellipse.Opacity)"
-              From="1.0" To="0.0" Duration="0:0:5"/>
+                                     Storyboard.TargetProperty="(Ellipse.Opacity)" From="1.0" To="0.0" Duration="0:0:5"/>
+
+                                    <DoubleAnimation From="30" To="{Binding damageRange}" Duration="0:0:5"  Storyboard.TargetProperty="(Ellipse.Width)" Storyboard.TargetName="bombLocation"/>
+                                    <DoubleAnimation From="30" To="{Binding damageRange}" Duration="0:0:5" Storyboard.TargetProperty="(Ellipse.Height)" Storyboard.TargetName="bombLocation"/>
+
                                 </Storyboard>
                             </BeginStoryboard>
                         </EventTrigger>
                     </Button.Triggers>
                 </Button>
             </Grid>
+            <TextBlock x:Name="gunLoading" Grid.Row="3" Text="Gun Loading.." FontSize="36" Foreground="#fff" TextAlignment="Center" Visibility="Hidden"/>
         </Grid>
 
     </Grid>

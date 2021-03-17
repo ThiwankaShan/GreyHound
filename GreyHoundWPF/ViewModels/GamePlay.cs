@@ -15,6 +15,7 @@ namespace GreyHoundWPF
         public Ship player { get; set; }
         public Thread t { set; get; }
         public bool isPlaying { get; set; }
+        public int damageRange { get; set; }
 
         public GamePlay()
         {
@@ -24,13 +25,13 @@ namespace GreyHoundWPF
             ship2 = builder.buildShip(factory);
             ship3 = builder.buildShip(factory);
             player = Player.getInstance();
-            
+            damageRange = player.getWeapon().getRange()*10 + 30;
 
             player.setLocation(10, 10);
             ship1.setLocation(1, 4);
             ship2.setLocation(0, 2);
             ship3.setLocation(2, 1);
-            
+   
             update();
             isPlaying = true;
             t = new Thread(Game);
@@ -41,7 +42,6 @@ namespace GreyHoundWPF
         {  
             while (isPlaying)
             {
-                Debug.WriteLine(ship1.health);
                 Thread.Sleep(12000);
                 gamePlay();
             }            
