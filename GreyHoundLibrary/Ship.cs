@@ -10,7 +10,7 @@ namespace GreyHoundLibrary
 
         private IEngine _engine;
 
-        public int health { get; set; } = 1000;
+        public int health { get; set; } = 100;
         public int locationX { get; set; }
         public int locationY { get; set; }
 

@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
         Title="GreyHound"
-        KeyDown="OnKeyDownHandler">
+        KeyDown="OnKeyDownHandler" WindowState="Maximized"
+    Height="720" Width="1280">
 
     <Grid x:Name="Layout" Background="#081207">
         <Grid.RowDefinitions>
@@ -34,22 +35,74 @@
                 Height="30"
                 Width="30"
                 />
-            
+
             <Ellipse x:Name="ship1" Grid.Column="{Binding ship1.locationY}" Grid.Row="{Binding ship1.locationX}"
                 Fill="#6E1917"
+                   Stroke="Red"
+                     StrokeThickness="10"
                 Height="20"
                 Width="20"
-                />
+                >
+                <Ellipse.Triggers>
+                    <EventTrigger RoutedEvent="Ellipse.Loaded">
+                        <EventTrigger.Actions>
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <DoubleAnimation
+                                     Storyboard.TargetProperty="(Ellipse.Opacity)"
+              From="1.0" To="0.2" Duration="0:0:2" AutoReverse="True" RepeatBehavior="Forever" />
+
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger.Actions>
+                    </EventTrigger>
+                </Ellipse.Triggers>
+            </Ellipse>
             <Ellipse x:Name="ship2" Grid.Column="{Binding ship2.locationY}" Grid.Row="{Binding ship2.locationX}"
                 Fill="#6E1917"
+                     Stroke="Red"
+                     StrokeThickness="10"
                 Height="20"
                 Width="20"
-                />
+                >
+                <Ellipse.Triggers>
+                    <EventTrigger RoutedEvent="Ellipse.Loaded">
+                        <EventTrigger.Actions>
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <DoubleAnimation
+                                     Storyboard.TargetProperty="(Ellipse.Opacity)"
+              From="1.0" To="0.2" Duration="0:0:2" AutoReverse="True" RepeatBehavior="Forever" />
+
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger.Actions>
+                    </EventTrigger>
+                </Ellipse.Triggers>
+            </Ellipse>
             <Ellipse x:Name="ship3" Grid.Column="{Binding ship3.locationY}" Grid.Row="{Binding ship3.locationX}"
                 Fill="#6E1917"
+                     Stroke="Red"
+                     StrokeThickness="10"
                 Height="20"
                 Width="20"
-                />
+                >
+                <Ellipse.Triggers>
+                    <EventTrigger RoutedEvent="Ellipse.Loaded">
+                        <EventTrigger.Actions>
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <DoubleAnimation
+                                     Storyboard.TargetProperty="(Ellipse.Opacity)"
+              From="1.0" To="0.2" Duration="0:0:2" AutoReverse="True" RepeatBehavior="Forever" />
+
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger.Actions>
+                    </EventTrigger>
+                </Ellipse.Triggers>
+            </Ellipse>
+            
             <Ellipse x:Name="player" Grid.Column="{Binding player.locationY}" Grid.Row="{Binding player.locationX}"
                 Fill="#fff"
                 Height="20"
@@ -62,44 +115,32 @@
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <TextBlock Text="Player" Grid.Row="0" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#fff"/>
-            <StackPanel Orientation="Horizontal" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center">
-                <TextBlock Text="Health :  " FontSize="16" Foreground="#fff"/>
-                <TextBlock Text="{Binding player.health}"  FontSize="16" Foreground="#fff"/>
-            </StackPanel>
+            <TextBlock Text="Player" Grid.Row="0" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#fff" Margin="0,0,0,10"/>
+
+            <ProgressBar Grid.Row="1" Value="{Binding player.health}" Width="100" Height="6" Margin="0,0,0,30"/>
+
+            <TextBlock Text="Ship 1" Grid.Row="2" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#fff" Margin="0,0,0,10"/>
+
+            <ProgressBar Grid.Row="3" Value="{Binding ship1.health}" Width="100" Height="6" Margin="0,0,0,30"/>
+
+            <TextBlock Text="Ship 2" Grid.Row="4" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#fff" Margin="0,0,0,10"/>
+
+            <ProgressBar Grid.Row="5" Value="{Binding ship2.health}" Width="100" Height="6" Margin="0,0,0,30"/>
+
+            <TextBlock Text="Ship 3" Grid.Row="6" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#fff" Margin="0,0,0,10"/>
+
+            <ProgressBar Grid.Row="7" Value="{Binding ship3.health}" Width="100" Height="6"/>
+
         </Grid>
 
-        <StackPanel Grid.Column="2" >
-            <StackPanel x:Name="ship1Stat">
-                <TextBlock Text="Ship 1" Grid.Row="0" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#fff" />
-                <StackPanel x:Name="ship1info" Orientation="Horizontal" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center">
-                    <TextBlock Text="Health :  " FontSize="16" Foreground="#fff"/>
-                    <TextBlock Text="{Binding ship1.health}"  FontSize="16" Foreground="#fff"/>
-                </StackPanel>
-                
-            </StackPanel>
-            <StackPanel x:Name="ship2Stat">
-                <TextBlock Text="Ship 2" Grid.Row="4" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#fff"/>
-            <StackPanel x:Name="ship2info" Orientation="Horizontal" Grid.Row="5" VerticalAlignment="Center" HorizontalAlignment="Center">
-                    <TextBlock Text="Health :  " FontSize="16" Foreground="#fff"/>
-                    <TextBlock Text="{Binding ship2.health}" Grid.Row="3" FontSize="16" Foreground="#fff"/>
-            </StackPanel>
-
-            
-            </StackPanel>
-            <StackPanel x:Name="ship3Stat">
-                <TextBlock Text="Ship 3" Grid.Row="8" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#fff"/>
-                <StackPanel x:Name="ship3info" Orientation="Horizontal" Grid.Row="9" VerticalAlignment="Center" HorizontalAlignment="Center">
-                    <TextBlock Text="Health :  " FontSize="16" Foreground="#fff"/>
-                    <TextBlock Text="{Binding ship3.health}" Grid.Row="3" FontSize="16" Foreground="#fff"/>
-                </StackPanel>
-                
-            </StackPanel>
-            </StackPanel>
-
-                <Grid x:Name="ControlsBar" Grid.Row="1" Grid.Column="1">
+        <Grid x:Name="ControlsBar" Grid.Row="1" Grid.Column="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="auto"/>
@@ -143,6 +184,6 @@
                 </Button>
             </Grid>
         </Grid>
-        
+
     </Grid>
 </Window>

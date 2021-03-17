@@ -22,7 +22,7 @@ namespace GreyHoundLibrary
 
         public int getDamage()
         {
-            return 50;
+            return 5;
         }
 
         public int getRange()
@@ -40,7 +40,7 @@ namespace GreyHoundLibrary
 
         public int getDamage()
         {
-            return 300;
+            return 30;
         }
 
         public int getRange()
