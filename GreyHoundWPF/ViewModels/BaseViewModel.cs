@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
 
-namespace GreyHoundWPF
+namespace GreyHoundWPF.ViewModels
 {
-    public class ObservableObject : INotifyPropertyChanged
+    public abstract class BaseViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -16,5 +16,9 @@ namespace GreyHoundWPF
                 PropertyChanged.Invoke(this, new PropertyChangedEventArgs(name));
             }
         }
+
+        public abstract void stop();
+        public abstract void start();
+   
     }
 }

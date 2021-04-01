@@ -5,19 +5,20 @@ using GreyHoundLibrary;
 using System.Collections.Generic;
 using System.Diagnostics;
 
-namespace GreyHoundWPF
+namespace GreyHoundWPF.ViewModels
 {
-    public class GamePlay : ObservableObject
+    public class GamePlayViewModel : BaseViewModel
     {
+        public static GamePlayViewModel instaince = null;
         public Ship ship1 { get; set; }
         public Ship ship2 { get; set; }
         public Ship ship3 { get; set; }
         public Ship player { get; set; }
-        public Thread t { set; get; }
+        public Thread thread { set; get; }
         public bool isPlaying { get; set; }
         public int damageRange { get; set; }
 
-        public GamePlay()
+        private GamePlayViewModel()
         {
             ShipBuilder builder = ShipBuilder.getInstance();
             ShipFactory factory = new HCShipFactory();
@@ -34,17 +35,31 @@ namespace GreyHoundWPF
    
             update();
             isPlaying = true;
-            t = new Thread(Game);
-            t.Start();
+            thread = new Thread(start);
+            thread.Start();
         }
 
-        public void Game()
-        {  
+        public static GamePlayViewModel getInstaince()
+        {
+            if (instaince == null)
+            {
+                instaince = new GamePlayViewModel();
+            }
+            return instaince ; 
+        }
+
+        public override void stop()
+        {
+            thread.Abort();
+        }
+
+        public override void start()
+        {
             while (isPlaying)
             {
                 Thread.Sleep(12000);
                 gamePlay();
-            }            
+            }
         }
 
         void gamePlay()
@@ -82,5 +97,7 @@ namespace GreyHoundWPF
         {
             onPropertyChanged(string.Empty);
         }
+
+        
     }
 }
