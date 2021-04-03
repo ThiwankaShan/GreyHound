@@ -1,19 +1,13 @@
-﻿using GreyHoundWPF.ViewModels;
+﻿using GreyHoundWPF.Commands;
+using GreyHoundWPF.ViewModels;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Diagnostics;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+
 
 namespace GreyHoundWPF.Views
 {
@@ -28,6 +22,8 @@ namespace GreyHoundWPF.Views
         public GameplayView()
         {
             InitializeComponent();
+
+            data = (GamePlayViewModel)MainViewModel.getInstaince().selectedViewModel;
 
             for (int i = 0; i < 20; i++)
             {
@@ -110,6 +106,20 @@ namespace GreyHoundWPF.Views
                 data.playerMove(0, 1);
                 await Task.Delay(6000);
                 available = true;
+            }
+            else if (e.Key == Key.Escape)
+            {
+                data.isPlaying = false;
+                try
+                {
+                    data.thread.Abort();
+                }
+                catch
+                {
+                    Debug.WriteLine("Thread closed");
+                }
+
+                UpdateViewCommand.getInstaince(MainViewModel.getInstaince()).Execute("mainMenue");
             }
         }
 

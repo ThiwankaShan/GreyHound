@@ -1,6 +1,7 @@
 ﻿using GreyHoundWPF.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 using System.Windows.Input;
 
@@ -37,11 +38,12 @@ namespace GreyHoundWPF.Commands
         {
             if (parameter.ToString() == "gamePlay")
             {
+                Debug.WriteLine("View update to gameplay view command fired");
                 this.viewModel.selectedViewModel = GamePlayViewModel.getInstaince();
-                Console.WriteLine("View update to gameplay view command fired");
-
+  
             }else if (parameter.ToString() == "mainMenue")
             {
+                Debug.WriteLine("View update to main menue view command fired");
                 this.viewModel.selectedViewModel = MainMenueViewModel.getInstaince();
             }
         }

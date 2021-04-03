@@ -14,7 +14,7 @@ namespace GreyHoundWPF.ViewModels
 
         private MainMenueViewModel()
         {
-            this.updateViewcommand = UpdateViewCommand.getInstaince();
+            this.updateViewcommand = UpdateViewCommand.getInstaince(MainViewModel.getInstaince());
         }
 
         public static MainMenueViewModel getInstaince()

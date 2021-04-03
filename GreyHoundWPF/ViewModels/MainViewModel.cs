@@ -18,16 +18,15 @@ namespace GreyHoundWPF.ViewModels
             }
             set {
                 _selectedViewModel = value;
-                onPropertyChanged(nameof(this._selectedViewModel));
+                onPropertyChanged(string.Empty);
             } 
         }
 
         public ICommand updateViewcommand { get; set; }
 
         private MainViewModel()
-        {
-            _selectedViewModel = MainMenueViewModel.getInstaince();
-            this.updateViewcommand = UpdateViewCommand.getInstaince(); 
+        {    
+            this.updateViewcommand = UpdateViewCommand.getInstaince(this); 
         }
 
         public static MainViewModel getInstaince()

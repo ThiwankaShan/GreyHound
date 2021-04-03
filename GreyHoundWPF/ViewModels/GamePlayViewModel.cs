@@ -1,14 +1,16 @@
 ﻿using System;
 using System.Threading;
-using System.ComponentModel;
 using GreyHoundLibrary;
-using System.Collections.Generic;
 using System.Diagnostics;
+using System.Windows.Input;
+using GreyHoundWPF.Commands;
 
 namespace GreyHoundWPF.ViewModels
 {
     public class GamePlayViewModel : BaseViewModel
     {
+        public ICommand updateViewcommand { get; set; }
+
         public static GamePlayViewModel instaince = null;
         public Ship ship1 { get; set; }
         public Ship ship2 { get; set; }
@@ -20,6 +22,8 @@ namespace GreyHoundWPF.ViewModels
 
         private GamePlayViewModel()
         {
+            this.updateViewcommand = UpdateViewCommand.getInstaince(MainViewModel.getInstaince());
+
             ShipBuilder builder = ShipBuilder.getInstance();
             ShipFactory factory = new HCShipFactory();
             ship1 = builder.buildShip(factory);
@@ -37,6 +41,7 @@ namespace GreyHoundWPF.ViewModels
             isPlaying = true;
             thread = new Thread(start);
             thread.Start();
+            Debug.WriteLine("Gameplay started");
         }
 
         public static GamePlayViewModel getInstaince()
@@ -57,6 +62,7 @@ namespace GreyHoundWPF.ViewModels
         {
             while (isPlaying)
             {
+                Debug.WriteLine("Playing");
                 Thread.Sleep(12000);
                 gamePlay();
             }

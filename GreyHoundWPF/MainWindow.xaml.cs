@@ -22,7 +22,11 @@ namespace GreyHoundWPF
         { 
             InitializeComponent();
 
-            DataContext = MainViewModel.getInstaince();
+            MainViewModel mainViewModel = MainViewModel.getInstaince();
+            mainViewModel.selectedViewModel = MainMenueViewModel.getInstaince();
+            DataContext = mainViewModel;
+
+
 
         }
     }
