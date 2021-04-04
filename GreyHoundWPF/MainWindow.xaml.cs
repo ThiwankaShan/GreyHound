@@ -26,8 +26,24 @@ namespace GreyHoundWPF
             mainViewModel.selectedViewModel = MainMenueViewModel.getInstaince();
             DataContext = mainViewModel;
 
+        }
 
+        protected override void OnClosing(CancelEventArgs e)
+        {
+            GamePlayViewModel data = GamePlayViewModel.getInstaince();
 
+            data.isPlaying = false;
+            try
+            {
+                data.thread.Abort();
+            }
+            catch
+            {
+                Debug.WriteLine("Thread closed");
+            }
+
+            base.OnClosing(e);
+            Application.Current.Shutdown();
         }
     }
 }

@@ -17,13 +17,13 @@ namespace GreyHoundWPF.Views
     public partial class GameplayView : UserControl
     {
         public GamePlayViewModel data { set; get; }
-        public bool available { set; get; } = true;
+        public bool available = true;
 
         public GameplayView()
         {
             InitializeComponent();
 
-            data = (GamePlayViewModel)MainViewModel.getInstaince().selectedViewModel;
+            data = GamePlayViewModel.getInstaince();
 
             for (int i = 0; i < 20; i++)
             {
@@ -77,6 +77,12 @@ namespace GreyHoundWPF.Views
             }
         }
 
+        private void GamePlayUserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            var window = Window.GetWindow(this);
+            window.KeyDown += OnKeyDownHandler;
+        }
+
         private async void OnKeyDownHandler(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Up && available)
@@ -109,6 +115,7 @@ namespace GreyHoundWPF.Views
             }
             else if (e.Key == Key.Escape)
             {
+                
                 data.isPlaying = false;
                 try
                 {
@@ -123,12 +130,6 @@ namespace GreyHoundWPF.Views
             }
         }
 
-        private void RadarGrid_MouseLeftButtonDown(object sender, MouseEventArgs e)
-        {
-            Grid grid = sender as Grid;
-            int row = (int)grid.GetValue(Grid.RowProperty);
-            int column = (int)grid.GetValue(Grid.ColumnProperty);
-            Debug.WriteLine($" {row.ToString()}, {column.ToString()}");
-        }
+        
     }
 }

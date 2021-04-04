@@ -36,8 +36,8 @@ namespace GreyHoundWPF.ViewModels
             ship1.setLocation(1, 4);
             ship2.setLocation(0, 2);
             ship3.setLocation(2, 1);
-   
-            update();
+
+            onPropertyChanged(string.Empty);
             isPlaying = true;
             thread = new Thread(start);
             thread.Start();
@@ -72,7 +72,7 @@ namespace GreyHoundWPF.ViewModels
         {
             enemyAttack();
             MoveSubject.getInstance().Move();
-            update();
+            onPropertyChanged(string.Empty);
         }
 
         void enemyAttack()
@@ -89,21 +89,15 @@ namespace GreyHoundWPF.ViewModels
         public void playerAttack(int x, int y)
         {
             player.attack(x,y);
-            update();
+            onPropertyChanged(string.Empty);
         }
 
         public void playerMove(int xDirection, int yDirection)
         {
             Thread.Sleep(1000);
             player.move(xDirection,yDirection);
-            update();
-        }
-
-        private void update()
-        {
             onPropertyChanged(string.Empty);
         }
-
         
     }
 }

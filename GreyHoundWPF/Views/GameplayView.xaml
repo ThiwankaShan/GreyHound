@@ -5,9 +5,9 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:GreyHoundWPF.Views"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800"
-             KeyDown="OnKeyDownHandler"
-             
+             d:DesignHeight="450" d:DesignWidth="800"    
+             Focusable="True"
+             Loaded="GamePlayUserControl_Loaded"
              >
     <Grid x:Name="Layout" Background="#081207">
         <Grid.RowDefinitions>
@@ -23,7 +23,7 @@
             <ColumnDefinition Width="0.25*"/>
         </Grid.ColumnDefinitions>
 
-        <Grid x:Name="RadarGrid" Grid.Row="0" ShowGridLines="True" Grid.Column="1" Width="auto" Height="auto" Background="#081207" ClipToBounds="False" MouseLeftButtonDown="RadarGrid_MouseLeftButtonDown" >
+        <Grid x:Name="RadarGrid" Grid.Row="0" ShowGridLines="True" Grid.Column="1" Width="auto" Height="auto" Background="#081207" ClipToBounds="False" >
 
             <Grid.ColumnDefinitions>
             </Grid.ColumnDefinitions>
@@ -39,7 +39,7 @@
                      Grid.ColumnSpan="2"
                      Grid.RowSpan="2"
                      HorizontalAlignment="Left"
-                     VerticalAlignment="Top"
+                     VerticalAlignment="Top" 
                 />
 
             <Ellipse x:Name="ship1" Grid.Column="{Binding ship1.locationY}" Grid.Row="{Binding ship1.locationX}"
@@ -166,8 +166,8 @@
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <TextBox Name="xCoordinate" Grid.Column="0" FontSize="16" Foreground="#fff"></TextBox>
-                <TextBox Name="yCoordinate" Grid.Column="1" FontSize="16" Foreground="#fff"></TextBox>
+                <TextBox Name="xCoordinate" Grid.Column="0" FontSize="16"  ></TextBox>
+                <TextBox Name="yCoordinate" Grid.Column="1" FontSize="16" ></TextBox>
             </Grid>
             <Grid Grid.Row="2">
                 <Grid.ColumnDefinitions>
