@@ -8,7 +8,7 @@
         WindowState="Maximized"
         Height="720" Width="1280"
         >
-
+    
     <Grid>
 
         <ContentControl Content="{Binding selectedViewModel }"/>

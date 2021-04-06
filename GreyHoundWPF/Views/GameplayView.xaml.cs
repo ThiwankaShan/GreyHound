@@ -67,7 +67,7 @@ namespace GreyHoundWPF.Views
                 int xcoordinate = Convert.ToInt32(xCoordinate.Text);
                 int ycoordinate = Convert.ToInt32(yCoordinate.Text);
 
-                data.playerAttack(xcoordinate, ycoordinate);
+                data.gamePlay.playerAttack(xcoordinate, ycoordinate);
                 fire.IsEnabled = false;
                 gunLoading.Visibility = Visibility.Visible;
 
@@ -88,43 +88,35 @@ namespace GreyHoundWPF.Views
             if (e.Key == Key.Up && available)
             {
                 available = false;
-                data.playerMove(-1, 0);
+                data.gamePlay.playerMove(-1, 0);
                 await Task.Delay(6000);
                 available = true;
             }
             else if (e.Key == Key.Left && available)
             {
                 available = false;
-                data.playerMove(0, -1);
+                data.gamePlay.playerMove(0, -1);
                 await Task.Delay(6000);
                 available = true;
             }
             else if (e.Key == Key.Down && available)
             {
                 available = false;
-                data.playerMove(1, 0);
+                data.gamePlay.playerMove(1, 0);
                 await Task.Delay(6000);
                 available = true;
             }
             else if (e.Key == Key.Right && available)
             {
                 available = false;
-                data.playerMove(0, 1);
+                data.gamePlay.playerMove(0, 1);
                 await Task.Delay(6000);
                 available = true;
             }
             else if (e.Key == Key.Escape)
             {
-                
-                data.isPlaying = false;
-                try
-                {
-                    data.thread.Abort();
-                }
-                catch
-                {
-                    Debug.WriteLine("Thread closed");
-                }
+
+                data.gamePlay.gameState.stop();
 
                 UpdateViewCommand.getInstaince(MainViewModel.getInstaince()).Execute("mainMenue");
             }

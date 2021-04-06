@@ -6,7 +6,7 @@ using System.Threading;
 
 namespace GreyHoundLibrary
 {
-    class PlayState : IGamePlayState
+    public class PlayState : IGamePlayState
     {
         public GamePlay gamePlayContext;
         public PlayState(GamePlay gamePlayContext)
@@ -17,16 +17,8 @@ namespace GreyHoundLibrary
         public void pause()
         {
             gamePlayContext.isPlaying = false;
-            try
-            {
-                gamePlayContext.thread.Abort();
-            }
-            catch
-            {
 
-            }
-
-            gamePlayContext.setState(gamePlayContext.stopedState);
+            gamePlayContext.setState(gamePlayContext.pausedState);
             Debug.WriteLine("Gameplay paused");
         }
 

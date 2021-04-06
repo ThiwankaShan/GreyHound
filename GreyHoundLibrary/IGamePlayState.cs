@@ -1,7 +1,7 @@
 ﻿
 namespace GreyHoundLibrary
 {
-    interface IGamePlayState
+    public interface IGamePlayState
     {
         public void play();
         public void stop();

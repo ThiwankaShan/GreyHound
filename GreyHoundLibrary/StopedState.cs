@@ -6,7 +6,7 @@ using System.Threading;
 
 namespace GreyHoundLibrary
 {
-    class StopedState : IGamePlayState
+    public class StopedState : IGamePlayState
     {
         public GamePlay gamePlayContext;
         public StopedState(GamePlay gamePlayContext)

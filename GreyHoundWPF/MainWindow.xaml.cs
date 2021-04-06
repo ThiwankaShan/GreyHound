@@ -32,15 +32,7 @@ namespace GreyHoundWPF
         {
             GamePlayViewModel data = GamePlayViewModel.getInstaince();
 
-            data.isPlaying = false;
-            try
-            {
-                data.thread.Abort();
-            }
-            catch
-            {
-                Debug.WriteLine("Thread closed");
-            }
+            data.gamePlay.gameState.stop();
 
             base.OnClosing(e);
             Application.Current.Shutdown();

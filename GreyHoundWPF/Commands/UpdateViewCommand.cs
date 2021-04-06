@@ -39,6 +39,7 @@ namespace GreyHoundWPF.Commands
             if (parameter.ToString() == "gamePlay")
             {
                 Debug.WriteLine("View update to gameplay view command fired");
+                GamePlayViewModel.getInstaince().gamePlay.gameState.play();
                 this.viewModel.selectedViewModel = GamePlayViewModel.getInstaince();
   
             }else if (parameter.ToString() == "mainMenue")

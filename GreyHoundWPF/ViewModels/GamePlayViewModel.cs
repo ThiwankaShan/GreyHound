@@ -10,38 +10,13 @@ namespace GreyHoundWPF.ViewModels
     public class GamePlayViewModel : BaseViewModel
     {
         public ICommand updateViewcommand { get; set; }
+        public GamePlay gamePlay { get; set; }
 
         public static GamePlayViewModel instaince = null;
-        public Ship ship1 { get; set; }
-        public Ship ship2 { get; set; }
-        public Ship ship3 { get; set; }
-        public Ship player { get; set; }
-        public Thread thread { set; get; }
-        public bool isPlaying { get; set; }
-        public int damageRange { get; set; }
-
+        
         private GamePlayViewModel()
         {
-            this.updateViewcommand = UpdateViewCommand.getInstaince(MainViewModel.getInstaince());
-
-            ShipBuilder builder = ShipBuilder.getInstance();
-            ShipFactory factory = new HCShipFactory();
-            ship1 = builder.buildShip(factory);
-            ship2 = builder.buildShip(factory);
-            ship3 = builder.buildShip(factory);
-            player = Player.getInstance();
-            damageRange = player.getWeapon().getRange()*10 + 30;
-
-            player.setLocation(10, 10);
-            ship1.setLocation(1, 4);
-            ship2.setLocation(0, 2);
-            ship3.setLocation(2, 1);
-
-            onPropertyChanged(string.Empty);
-            isPlaying = true;
-            thread = new Thread(start);
-            thread.Start();
-            Debug.WriteLine("Gameplay started");
+            gamePlay = new GamePlay();
         }
 
         public static GamePlayViewModel getInstaince()
@@ -50,50 +25,17 @@ namespace GreyHoundWPF.ViewModels
             {
                 instaince = new GamePlayViewModel();
             }
-            return instaince ; 
-        }
-
-        public override void stop()
-        {
-            thread.Abort();
+            return instaince;
         }
 
         public override void start()
         {
-            while (isPlaying)
-            {
-                Debug.WriteLine("Playing");
-                Thread.Sleep(12000);
-                gamePlay();
-            }
+            throw new NotImplementedException();
         }
 
-        void gamePlay()
+        public override void stop()
         {
-            enemyAttack();
-            MoveSubject.getInstance().Move();
-            onPropertyChanged(string.Empty);
+            throw new NotImplementedException();
         }
-
-        void enemyAttack()
-        {
-            ship1.attack();
-            ship2.attack();
-            ship3.attack();
-        }
-
-        public void playerAttack(int x, int y)
-        {
-            player.attack(x,y);
-            onPropertyChanged(string.Empty);
-        }
-
-        public void playerMove(int xDirection, int yDirection)
-        {
-            Thread.Sleep(1000);
-            player.move(xDirection,yDirection);
-            onPropertyChanged(string.Empty);
-        }
-        
     }
 }

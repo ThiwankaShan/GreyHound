@@ -42,7 +42,7 @@
                      VerticalAlignment="Top" 
                 />
 
-            <Ellipse x:Name="ship1" Grid.Column="{Binding ship1.locationY}" Grid.Row="{Binding ship1.locationX}"
+            <Ellipse x:Name="ship1" Grid.Column="{Binding gamePlay.ship1.locationY}" Grid.Row="{Binding gamePlay.ship1.locationX}"
                 Fill="#6E1917"
                    Stroke="Red"
                      StrokeThickness="10"
@@ -64,7 +64,7 @@
                     </EventTrigger>
                 </Ellipse.Triggers>
             </Ellipse>
-            <Ellipse x:Name="ship2" Grid.Column="{Binding ship2.locationY}" Grid.Row="{Binding ship2.locationX}"
+            <Ellipse x:Name="ship2" Grid.Column="{Binding gamePlay.ship2.locationY}" Grid.Row="{Binding gamePlay.ship2.locationX}"
                 Fill="#6E1917"
                      Stroke="Red"
                      StrokeThickness="10"
@@ -86,7 +86,7 @@
                     </EventTrigger>
                 </Ellipse.Triggers>
             </Ellipse>
-            <Ellipse x:Name="ship3" Grid.Column="{Binding ship3.locationY}" Grid.Row="{Binding ship3.locationX}"
+            <Ellipse x:Name="ship3" Grid.Column="{Binding gamePlay.ship3.locationY}" Grid.Row="{Binding gamePlay.ship3.locationX}"
                 Fill="#6E1917"
                      Stroke="Red"
                      StrokeThickness="10"
@@ -109,7 +109,7 @@
                 </Ellipse.Triggers>
             </Ellipse>
 
-            <Ellipse x:Name="player" Grid.Column="{Binding player.locationY}" Grid.Row="{Binding player.locationX}"
+            <Ellipse x:Name="player" Grid.Column="{Binding gamePlay.player.locationY}" Grid.Row="{Binding gamePlay.player.locationX}"
                 Fill="#fff"
                 Height="20"
                 Width="20"
@@ -130,19 +130,19 @@
             </Grid.RowDefinitions>
             <TextBlock Text="Player" Grid.Row="0" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#fff" Margin="0,0,0,10"/>
 
-            <ProgressBar Grid.Row="1" Value="{Binding player.health}" Width="100" Height="6" Margin="0,0,0,30"/>
+            <ProgressBar Grid.Row="1" Value="{Binding gamePlay.player.health}" Width="100" Height="6" Margin="0,0,0,30"/>
 
             <TextBlock Text="Ship 1" Grid.Row="2" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#fff" Margin="0,0,0,10"/>
 
-            <ProgressBar Grid.Row="3" Value="{Binding ship1.health}" Width="100" Height="6" Margin="0,0,0,30"/>
+            <ProgressBar Grid.Row="3" Value="{Binding gamePlay.ship1.health}" Width="100" Height="6" Margin="0,0,0,30"/>
 
             <TextBlock Text="Ship 2" Grid.Row="4" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#fff" Margin="0,0,0,10"/>
 
-            <ProgressBar Grid.Row="5" Value="{Binding ship2.health}" Width="100" Height="6" Margin="0,0,0,30"/>
+            <ProgressBar Grid.Row="5" Value="{Binding gamePlay.ship2.health}" Width="100" Height="6" Margin="0,0,0,30"/>
 
             <TextBlock Text="Ship 3" Grid.Row="6" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#fff" Margin="0,0,0,10"/>
 
-            <ProgressBar Grid.Row="7" Value="{Binding ship3.health}" Width="100" Height="6"/>
+            <ProgressBar Grid.Row="7" Value="{Binding gamePlay.ship3.health}" Width="100" Height="6"/>
 
         </Grid>
 
@@ -184,8 +184,8 @@
                                     <DoubleAnimation Storyboard.TargetName="bombLocation"
                                      Storyboard.TargetProperty="(Ellipse.Opacity)" From="1.0" To="0.0" Duration="0:0:5"/>
 
-                                    <DoubleAnimation From="30" To="{Binding damageRange}" Duration="0:0:5"  Storyboard.TargetProperty="(Ellipse.Width)" Storyboard.TargetName="bombLocation"/>
-                                    <DoubleAnimation From="30" To="{Binding damageRange}" Duration="0:0:5" Storyboard.TargetProperty="(Ellipse.Height)" Storyboard.TargetName="bombLocation"/>
+                                    <DoubleAnimation From="30" To="{Binding gamePlay.damageRange}" Duration="0:0:5"  Storyboard.TargetProperty="(Ellipse.Width)" Storyboard.TargetName="bombLocation"/>
+                                    <DoubleAnimation From="30" To="{Binding gamePlay.damageRange}" Duration="0:0:5" Storyboard.TargetProperty="(Ellipse.Height)" Storyboard.TargetName="bombLocation"/>
 
                                 </Storyboard>
                             </BeginStoryboard>

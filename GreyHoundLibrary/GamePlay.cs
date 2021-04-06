@@ -5,7 +5,7 @@ using System.Threading;
 namespace GreyHoundLibrary
 {
 
-    class GamePlay : INotifyPropertyChanged
+    public class GamePlay : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
         public Ship ship1 { get; set; }
@@ -42,6 +42,7 @@ namespace GreyHoundLibrary
             ship2 = builder.buildShip(factory);
             ship3 = builder.buildShip(factory);
             player = Player.getInstance();
+            player.health = 100;
             damageRange = player.getWeapon().getRange() * 10 + 30;
 
             player.setLocation(10, 10);
@@ -61,11 +62,15 @@ namespace GreyHoundLibrary
 
         public void start()
         {
-            while (isPlaying)
+            while (true)
             {
-                Debug.WriteLine("Playing");
-                Thread.Sleep(12000);
-                gamePlay();
+                if (isPlaying)
+                {
+                    Debug.WriteLine("Playing");
+                    Thread.Sleep(12000);
+                    gamePlay();
+                }
+                
             }
         }
 
