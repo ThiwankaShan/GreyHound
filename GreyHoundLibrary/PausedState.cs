@@ -21,14 +21,14 @@ namespace GreyHoundLibrary
 
         public void play()
         {
-            gamePlayContext.isPlaying = true;
+            gamePlayContext.isPlaying = "playing";
             gamePlayContext.setState(gamePlayContext.playState);
             Debug.WriteLine("Gameplay started");
         }
 
         public void stop()
         {
-            gamePlayContext.isPlaying = false;
+            gamePlayContext.isPlaying = "stopped";
             try
             {
                 gamePlayContext.thread.Abort();

@@ -13,7 +13,7 @@ namespace GreyHoundLibrary
         public Ship ship3 { get; set; }
         public Ship player { get; set; }
         public Thread thread { set; get; }
-        public bool isPlaying { get; set; }
+        public string isPlaying { get; set; }
         public int damageRange { get; set; }
 
         public IGamePlayState playState;
@@ -62,15 +62,11 @@ namespace GreyHoundLibrary
 
         public void start()
         {
-            while (true)
+            while (isPlaying != "stopped" )
             {
-                if (isPlaying)
-                {
-                    Debug.WriteLine("Playing");
-                    Thread.Sleep(12000);
-                    gamePlay();
-                }
-                
+               Debug.WriteLine("Playing");
+               Thread.Sleep(12000);
+               gamePlay();     
             }
         }
 

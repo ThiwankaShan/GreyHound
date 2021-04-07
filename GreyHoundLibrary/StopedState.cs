@@ -22,7 +22,7 @@ namespace GreyHoundLibrary
         public void play()
         {
             gamePlayContext.setInitStatus();
-            gamePlayContext.isPlaying = true;
+            gamePlayContext.isPlaying = "playing";
             gamePlayContext.thread = new Thread(gamePlayContext.start);
             gamePlayContext.thread.Start();
             gamePlayContext.setState(gamePlayContext.playState);

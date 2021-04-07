@@ -16,7 +16,7 @@ namespace GreyHoundLibrary
         
         public void pause()
         {
-            gamePlayContext.isPlaying = false;
+            gamePlayContext.isPlaying = "paused";
 
             gamePlayContext.setState(gamePlayContext.pausedState);
             Debug.WriteLine("Gameplay paused");
@@ -29,7 +29,7 @@ namespace GreyHoundLibrary
 
         public void stop()
         {
-            gamePlayContext.isPlaying = false;
+            gamePlayContext.isPlaying = "stopped";
             try
             {
                 gamePlayContext.thread.Abort();
