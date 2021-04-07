@@ -16,9 +16,6 @@ namespace GreyHoundWPF.ViewModels
                 PropertyChanged.Invoke(this, new PropertyChangedEventArgs(name));
             }
         }
-
-        public abstract void stop();
-        public abstract void start();
    
     }
 }

@@ -28,14 +28,5 @@ namespace GreyHoundWPF.ViewModels
             return instaince;
         }
 
-        public override void start()
-        {
-            throw new NotImplementedException();
-        }
-
-        public override void stop()
-        {
-            throw new NotImplementedException();
-        }
     }
 }

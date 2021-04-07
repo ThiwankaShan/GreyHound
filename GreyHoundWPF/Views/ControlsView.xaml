@@ -1,0 +1,41 @@
+﻿<UserControl x:Class="GreyHoundWPF.Views.ControlsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:local="clr-namespace:GreyHoundWPF.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid Background="White">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.25*" />
+            <ColumnDefinition Width="0.25*" />
+            <ColumnDefinition Width="0.5*" />
+            <ColumnDefinition Width="0.5*" />
+            
+        </Grid.ColumnDefinitions>
+        
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Column="0" Grid.Row="0" Text="Move Up" TextAlignment="Center" FontSize="24" Foreground="Purple" Margin="0,20,0,0"/>
+        <TextBlock Grid.Column="0" Grid.Row="1" Text="Move Down" TextAlignment="Center" FontSize="24" Foreground="Purple" Margin="0,20,0,0"/>
+        <TextBlock Grid.Column="0" Grid.Row="2" Text="Move Right" TextAlignment="Center" FontSize="24" Foreground="Purple" Margin="0,20,0,0"/>
+        <TextBlock Grid.Column="0" Grid.Row="3" Text="Move Left" TextAlignment="Center" FontSize="24" Foreground="Purple" Margin="0,20,0,0"/>
+        
+        <materialDesign:PackIcon Grid.Column="1" Grid.Row="0" HorizontalAlignment="Center" Kind="ArrowUpBoldOutline"  Margin="0,20,0,0" Height="24" Width="24"/>
+        <materialDesign:PackIcon Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" Kind="ArrowDownBoldOutline"  Margin="0,20,0,0" Height="24" Width="24"/>
+        <materialDesign:PackIcon Grid.Column="1" Grid.Row="2" HorizontalAlignment="Center" Kind="ArrowRightBoldOutline"  Margin="0,20,0,0" Height="24" Width="24"/>
+        <materialDesign:PackIcon Grid.Column="1" Grid.Row="3" HorizontalAlignment="Center" Kind="ArrowLeftBoldOutline"  Margin="0,20,0,0" Height="24" Width="24"/>
+
+        <Button Grid.Column="3" Grid.Row="5" Background="Purple" Width="100" Height="50" Content="Back" FontSize="28" Foreground="White" Command="{Binding updateViewcommand}" CommandParameter="mainMenue"/>
+
+    </Grid>
+</UserControl>

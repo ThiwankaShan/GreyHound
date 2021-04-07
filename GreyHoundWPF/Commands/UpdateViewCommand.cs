@@ -47,6 +47,11 @@ namespace GreyHoundWPF.Commands
                 Debug.WriteLine("View update to main menue view command fired");
                 this.viewModel.selectedViewModel = MainMenueViewModel.getInstaince();
             }
+            else if (parameter.ToString() == "controls")
+            {
+                Debug.WriteLine("View update to controls menue view command fired");
+                this.viewModel.selectedViewModel = ControlsViewModel.getInstaince();
+            }
         }
     }
 }
